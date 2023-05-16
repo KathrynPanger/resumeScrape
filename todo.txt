@@ -1,0 +1,5 @@
+1. write a test function to make sure that all pages of pdf are captured.
+2. write a test function to make sure correct word counts are captured.
+3. Remove unnecessary parts of speech from word freqs
+4. remove any \n and weird characters from words before adding them to wordfreqs
+5. lowercase only

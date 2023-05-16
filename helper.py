@@ -1,8 +1,10 @@
-def reset_eof(pdfText):
-    for i, x in enumerate(pdfText[::-1]):
-        if b'%%EOF' in x:
-            actual_line = len(pdfText) - i
-            print(f'EOF found at line position {-i} = actual {actual_line}, with value {x}')
-            break
+import re
 
-            return pdfText[:actual_line]
+def clean_text(text: str):
+    #make all words lower case
+    text = text.lower()
+    # remove new line character
+    text = text.replace("\n", "")
+    # remove non-alphanumeric characters
+    text = re.sub(r'[^A-Za-z0-9 ]+', '', text)
+    return text
