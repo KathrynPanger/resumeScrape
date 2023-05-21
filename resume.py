@@ -1,47 +1,21 @@
 from typing import List
 import PyPDF2
 import re
+from pdfquery import PDFQuery
+from helper import words, frequencies
 
 class Resume():
     def __init__(self, path: str):
         self.path = path
-        self.pdfFileObj = open(f'{path}', 'rb')
-        self.pdfReader = PyPDF2.PdfReader(self.pdfFileObj)
-        self.pageCount = len(self.pdfReader.pages)
+        self.pdf = PDFQuery(path)
+        self.pdf.load()
+        self.text_elements = self.pdf.pq('LTTextLineHorizontal')
         self.corpus = ""
-        self.wordList = []
-        self.wordFreqs = {}
-        self.searchScores = {}
 
-        for i in range(self.pageCount):
-            page = self.pdfReader.pages[i]
-            text = page.extract_text()
-            self.corpus += f" {text}"
+        # Extract the corpus from the elements
+        for t in self.text_elements:
+            self.corpus += f" {t.text}"
 
-        # Convert corpus to list of unique words, cleaned of special characters
-        words = self.corpus.lower()
-        words = re.sub(r'[^A-Za-z0-9 ]+', ' ', words)
-        words = re.split('; |, |\*|\n| |/|\t|  ',words)
-        #words = words.split(" ")
-        self.wordList = [item for item in set(words)]
-
-        # Get word frequencies
-        for word in words:
-            if word not in self.wordFreqs:
-                self.wordFreqs[word] = 1
-            else:
-                self.wordFreqs[word] += 1
-
-        self.pdfFileObj.close()
-
-    @property
-    def searchScores(self):
-        return self.searchScores
-
-    @searchScores.setter
-    def searchScores(self, searchList: list[str]):
-        scores = {}
-        for item in searchList:
-            item = item.lower()
-            if item not in scores:
-                pass
+        self.words = words(self.corpus)
+        self.uniqueWords = set(self.words)
+        self.frequencies = frequencies(self.words)

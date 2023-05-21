@@ -21,5 +21,6 @@ for filePath in directory:
 
 weirdResume = Resume("resumes/FernandoBecerra_Resume.pdf")
 normalResume = Resume("resumes/bear-jordan-resume.pdf")
-print(weirdResume.wordFreqs)
-print(normalResume.wordFreqs)
+print(weirdResume.frequencies)
+#rint(repr(weirdResume.corpus))
+#sprint(normalResume.corpus)
