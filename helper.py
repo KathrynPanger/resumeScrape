@@ -1,10 +1,12 @@
 import re
+from stop_words import get_stop_words
 
 def words(text: str):
     text = text.lower()
     text = re.sub(r'[^A-Za-z0-9 ]+', '', text)
-    textList = re.split('; |, |\*|\n| ', text)
-    return textList
+    wordList = re.split('; |, |\*|\n| ', text)
+    wordList = [word for word in wordList if word not in get_stop_words('en')]
+    return wordList
 
 def frequencies(wordList):
     frequencies = {}
