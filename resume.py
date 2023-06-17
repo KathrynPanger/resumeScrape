@@ -36,5 +36,13 @@ class Resume():
                 score += frequency
         return score
 
+    def one_hot(self, comparison_vector: List[str]):
+        one_hot_map = []
+        for word in resume:
+            # Append a 1 in the words place if the word is in the comparison text
+            one_hot_map.append(int(word in comparison_vector))
+
+
     def __repr__(self):
         return (f"Resume(name = {self.name}, id = {self.id})")
+
