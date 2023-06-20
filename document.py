@@ -5,7 +5,8 @@ import uuid
 from pdfquery import PDFQuery
 from helper import words, frequencies
 import re
-
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 class Document():
@@ -28,13 +29,19 @@ class Document():
         # Get remaining word frequencies
         self.frequencies = frequencies(self.words)
 
-    # def frequency_match(self, word_list: List[str]):
-    #     score = 0
-    #     for word in word_list:
-    #         if word in self.frequencies:
-    #             frequency = self.frequencies[word]
-    #             score += frequency
-    #     return score
+    def frequency_match(self, word_list: List[str]):
+        score = 0
+        for word in word_list:
+            if word in self.frequencies:
+                frequency = self.frequencies[word]
+                score += frequency
+        return score
+
+    def proportion_match(self, job_description: str):
+        cv = CountVectorizer()
+        count_matrix = cv.fit_transform([self.corpus, job_description])
+        proportion_match = cosine_similarity(count_matrix)[0][1]
+        return proportion_match
 
     # def one_hot(self, comparison_vector: List[str]):
     #     one_hot_map = []
@@ -42,11 +49,6 @@ class Document():
     #         # Append a 1 in the words place if the word is in the comparison text
     #         one_hot_map.append(int(word in comparison_vector))
     #
-    # def proportion_match(self, job_description:str):
-    #     cv = CountVectorizer()
-    #     count_matrix = cv.fit_transform(self.corpus, job_description)
-    #     proportion_match = cosine_similarity(count_matrix)[0][1]
-    #     return proportion_match
 
 
     def __repr__(self):

@@ -9,12 +9,24 @@ from briefcase import Briefcase
 # Task 1: rank resume objects
 searchList = ["sQl", "python", "van", "degree"]
 
+# # resume has function version
+# briefcase = Briefcase("resumes", jobs_directory="jobs")
+# for resume in briefcase.resumes:
+#     score = resume.frequency_match(briefcase.jobs[0].words)
+#     print(resume, score)
+
+
+# briefcase has function version
+# #print(briefcase.frequency_match(searchList, 4))
+# winners = briefcase.proportion_match(briefcase.jobs[0].corpus, 5)
+# for resume in winners:
+#     print(resume, resume.proportion_match)
+
+
+#print(repr(weirdResume.corpus))
+#print(normalResume.corpus)
+
+
 briefcase = Briefcase("resumes", jobs_directory="jobs")
-#print(briefcase.frequency_match(searchList, 4))
-winners = briefcase.proportion_match(briefcase.jobs[0].corpus, 5)
-for resume in winners:
-    print(resume, resume.proportion_match)
-
-
-#rint(repr(weirdResume.corpus))
-#sprint(normalResume.corpus)
+matches = briefcase.greedy_proportion_matches()
+print(matches)
