@@ -2,7 +2,7 @@ from document import Document
 
 
 class Match():
-    def __init__(self, job: Document, resume: Document):
+    def __init__(self, job: Document, resume: Document, score: float):
         self.job = job
         self.resume = resume
 

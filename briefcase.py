@@ -51,13 +51,8 @@ class Briefcase():
             if i <= len(jobs):
                 matched_jobs[jobs[job_number]] = []
             resume = self.proportion_top_n(job_description=jobs[job_number].corpus, resume_list=resumes, number_to_return=1)[0]
-            match = Match(jobs[job_number], resume)
-            matched_jobs[jobs[job_number]].append(match)
-            print(f"Here's the resume: {resume}")
-            print(f"Here's the list of resumes: {resumes}")
-            print(f"Is resume in resumes?: {resume in resumes}")
+            matched_jobs[jobs[job_number]].append(resume)
             resumes.remove(resume)
-            print(f"REMAINING RESUMES: {len(resumes)}")
         return matched_jobs
 
     # def systematic_proportion_matches(self):

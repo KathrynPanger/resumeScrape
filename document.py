@@ -17,6 +17,8 @@ class Document():
         self.pdf.load()
         self.text_elements = self.pdf.pq('LTTextLineHorizontal')
         self.corpus = ""
+        self.proportion_score = None
+        self.frequency_score = None
 
         # Extract the corpus from the elements
         self.corpus = self.corpus.join(t.text for t in self.text_elements)
@@ -52,6 +54,6 @@ class Document():
 
 
     def __repr__(self):
-        return (f"Document(path = {self.path}, id = {self.id})")
+        return (f"Document(path = {self.path}, id = {self.id}, match score = {self.proportion_score})")
 
 
