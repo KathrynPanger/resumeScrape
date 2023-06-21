@@ -30,3 +30,7 @@ searchList = ["sQl", "python", "van", "degree"]
 briefcase = Briefcase("resumes", jobs_directory="jobs")
 matches = briefcase.greedy_proportion_matches()
 print(matches)
+#matches = briefcase.proportion_top_n(briefcase.jobs[0].corpus, briefcase.resumes, 5)
+#print(matches)
+#matches = briefcase.greedy_proportion_matches()
+#matches = briefcase.systematic_proportion_matches()
