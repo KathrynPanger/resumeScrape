@@ -1,7 +1,6 @@
 from typing import List
 import os
 from document import Document
-from match import Match
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import itertools
@@ -46,30 +45,3 @@ class Briefcase():
             matched_jobs[jobs[job_number]].append(resume)
             resumes.remove(resume)
         return matched_jobs
-
-    # def systematic_proportion_matches(self):
-    #     unique_combinations = []
-    #
-    #     # Getting all permutations of list_1
-    #     # with length of list_2
-    #     permut = itertools.permutations(self.jobs, len(list_2))
-    #
-    #     # zip() is called to pair each permutation
-    #     # and shorter list element into combination
-    #     for comb in permut:
-    #         zipped = zip(comb, list_2)
-    #         unique_combinations.append(list(zipped))
-    #
-    #     # printing unique_combination list
-    #     print(unique_combinations)
-
-        # # Get list of all permutations of original jobs list
-        # jobs_permutations = list(itertools.permutations(self.jobs))
-        # print(jobs_permutations)
-        # matches = []
-        # for job in self.jobs:
-        #     resume = self.proportion_top_n(job_description=job.corpus, number_to_return=1)[0]
-        #     match = Match(job, resume)
-        #     score = resume.proportion_score
-        #     matches.append(f"Match = {(Match(job, resume))}, proportion_match = {score}")
-        # return matches
