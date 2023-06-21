@@ -45,12 +45,6 @@ class Document():
         proportion_match = cosine_similarity(count_matrix)[0][1]
         return proportion_match
 
-    # def one_hot(self, comparison_vector: List[str]):
-    #     one_hot_map = []
-    #     for word in self.corpus:
-    #         # Append a 1 in the words place if the word is in the comparison text
-    #         one_hot_map.append(int(word in comparison_vector))
-    #
 
 
     def __repr__(self):

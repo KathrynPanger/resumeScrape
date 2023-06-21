@@ -33,14 +33,6 @@ class Briefcase():
            resume.proportion_score = resume.proportion_match(job_description)
         return sorted(self.resumes, key=lambda resume: resume.proportion_score, reverse = True)[: number_to_return]
 
-    def greedy_proportion_matches_oneperjob(self):
-        matches = []
-        for job in self.jobs:
-            resume = self.proportion_top_n(job_description=job.corpus, number_to_return=1)[0]
-            match = Match(job, resume)
-            score = resume.proportion_score
-            matches.append(f"Match = {(Match(job, resume))}, proportion_match = {score}")
-        return matches
 
     def greedy_proportion_matches(self):
         matched_jobs = {}
@@ -70,8 +62,6 @@ class Briefcase():
     #
     #     # printing unique_combination list
     #     print(unique_combinations)
-
-
 
         # # Get list of all permutations of original jobs list
         # jobs_permutations = list(itertools.permutations(self.jobs))
